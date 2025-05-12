@@ -27,17 +27,14 @@ int main (int argc, char **argv)
 
     a = NULL;
     b = NULL;
-    if (argc >= 2 && argv[1][0] != NULL)
-    {
-        if (argc == 2)
-            argv = ft_split(argv[1], " ");
-        put_in_stack(&a, argv + 1);
-        // sorting algorithm
-    }
+    if (argc < 2 || argv[1][0] == NULL)
+        return (1);
     else
     {
-        write(1, "Error\n", 6);
-        return (1);
+        check_input(argc, argv);
+        if (argc == 2);
+            argv = ft_split(argv[1], " ");
+        put
     }
     return (0);
 }
