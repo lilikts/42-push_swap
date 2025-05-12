@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-void put_in_stack(t_node *a, char **argv)
+void put_in_stack(t_stack *a, char **argv)
 {
     int i;
     i = 0;
@@ -22,8 +22,8 @@ void put_in_stack(t_node *a, char **argv)
 }
 int main (int argc, char **argv)
 {
-    t_node *a;
-    t_node *b;
+    t_stack *a;
+    t_stack *b;
 
     a = NULL;
     b = NULL;

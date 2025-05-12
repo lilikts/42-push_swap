@@ -1,79 +1,77 @@
 #include "push_swap.h"
 
-int empty_argument(char *str)
+int no_duplicates(char **argv)
 {
+
+}
+
+int check_overflow(char *str)
+{
+
+}
+
+static t_stack *transform_to_int(char **args)
+{
+    t_stack *a;
+    int size;
     int i;
+    int temp;
+
+    size = ft_arrlen(args);
     i = 0;
-    while (str[i])
+    while (i < size)
     {
-        if (str[i] != ' ')
-            return (0);
+        temp = ft_atolo(args[i]);
+        stack_add_back(&a, new_stack(temp));
         i++;
     }
-    return (1);
+    //free
+    return (a);
 }
 
-int valid_ascii(char *str)
+static t_stack *transform_input(int argc, char **argv)
 {
-    int i;
-    i = 0;
-    while (str[i])
-    {
-        if (!((str[i] >= '0' && str[i] <= '9') || str[i] == ' ' || str[i] == '+' || argv[i][j] == '-'))
-            return (1);
-        i++;
-    }
-    return (0);
-}
-
-int has_duplicates(char *str)
-{
-    int i;
-    int letter;
-
-    i = 0;
-    while (str[i])
-    {
-        if ()
-    }
-
-}
-
-int valid_sign(char *str)
-{
-    int i;
-    i = 0;
-    while(str[i])
-    {
-        if (str[i] == '+' || str[i] == '-')
-        {
-            if (i > 0 && str[i - 1] != ' ')
-                return (1);
-            if (!(str[i + 1] >= '0' && str[i + 1] <= '9'))
-                return (1);
-            if (str[i + 1] == '+' || str[i + 1] == '-')
-                return (1);
-        }
-        i++;
-    }
-    return (0);
-}
-
-int check_input(int argc, char **argv)
-{
+    t_stack *a;
+    char **args;
     int i;
     int j;
 
     i = 1;
-    while (i < argc)
+    j = 0;
+    args = NULL;
+    if (argc == 2)
+        args = ft_split(argv[1], ' ');
+    else
     {
-        j = 0;
-        
+        args = (char **)malloc(sizeof(char *) * argc);
+        if (!args)
+            return (NULL);
+        while (i < argc)
+            args[j++] = argv[i++];
+        args[j] = NULL;
+    }
+    a = transform_to_int(args);
+    return (a);
 }
 
-int main (int argc, char **argv)
+t_stack *handle_input(int argc, char **argv)
 {
-    int i = check_input(argc, argv);
-    printf("%i\n", i);
-    return (0);
+    t_stack *a;
+    int i;
+
+    i = 0;
+    if (argc < 2 || argv[1][0] == '\0')
+        return (NULL);
+    if (valid_arguments(argc, argv))
+        return (NULL);
+    a = transform_input(argc, argv);
+    if (no_duplicates(a))
+        return (NULL);
+    while(a)
+    {
+        if (check_overflow(a))
+            return (NULL);
+        i++;
+    }
+    return (a);
 }

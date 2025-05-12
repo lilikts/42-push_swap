@@ -5,10 +5,16 @@
 #include <limits.h>
 #include <stdio.h>
 
-struct s_node
+struct s_stack
 {
-    int num;
-    struct s_node *next;
-} typedef t_node;
+    long num;
+    struct s_stack *next;
+} typedef t_stack;
+
+int valid_arguments(int argc, char **argv);
+t_stack *new_stack(int temp);
+int ft_arrlen(char **arr);
+int	ft_atolo(const char *str);
+void	stack_add_back(t_stack **stack, t_stack *new);
 
 #endif
