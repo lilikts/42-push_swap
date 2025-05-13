@@ -16,6 +16,9 @@ LIBFTFLAGS = -L$(LIBFT_DIR) -lft
 LIBFT_REPO = https://github.com/lilikts/42-Libft.git
 
 SRCS =	main.c \
+		input.c \
+		utils.c \
+		valid_arguments.c
 		
 
 OBJS := $(addprefix $(OBJ_DIR)/, $(SRCS:%.c=%.o))

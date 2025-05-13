@@ -4,8 +4,8 @@ t_stack *new_stack(int temp)
 {
     t_stack *new;
     new = malloc(sizeof(t_stack));
-    if (!new)
-        error_msg();
+    // if (!new)
+    //     error_msg();
     new->num = temp;
     new->next = NULL;
     return (new);
@@ -40,28 +40,8 @@ void	stack_add_back(t_stack **stack, t_stack *new)
 		(stack_last(*stack))->next = new;
 }
 
-int	ft_atolo(const char *str)
+void error_message(void)
 {
-	long long int	num;
-	int	i;
-	int	sign;
-
-	num = 0;
-	i = 0;
-	sign = 1;
-	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
-		i++;
-	if (str[i] == 43 || str[i] == 45)
-	{
-		if (str[i] == 45)
-			sign = -1;
-		i++;
-	}
-	while (str[i] >= 48 && str[i] <= 57)
-	{
-		num = num * 10 + (str[i] - '0');
-		i++;
-	}
-    //check_overflow
-	return (num * sign);
+    write(2, "Error\n", 6);
+    exit(EXIT_FAILURE);
 }
