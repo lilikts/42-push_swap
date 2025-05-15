@@ -1,6 +1,7 @@
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
+#include "libft.h"
 #include <stdbool.h>
 #include <limits.h>
 #include <stdio.h>
@@ -22,5 +23,13 @@ t_stack	*stack_last(t_stack *stack);
 char	**ft_split(char const *s, char c);
 t_stack *handle_input(int argc, char **argv);
 void error_message(void);
+void push(t_stack **dest, t_stack **src);
+void swap(t_stack **stack);
+void rotate(t_stack **stack);
+void reverse_rotate(t_stack **stack);
+void push_stack(char dest, t_stack **a, t_stack **b);
+void swap_stack(char dest, t_stack **a, t_stack **b);
+void rotate_stack(char dest, t_stack **a, t_stack **b);
+void reverse_rotate_stack(char dest, t_stack **a, t_stack **b);
 
 #endif

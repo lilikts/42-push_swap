@@ -18,7 +18,9 @@ LIBFT_REPO = https://github.com/lilikts/42-Libft.git
 SRCS =	main.c \
 		input.c \
 		utils.c \
-		valid_arguments.c
+		valid_arguments.c \
+		operations.c \
+		stack_handling.c
 		
 
 OBJS := $(addprefix $(OBJ_DIR)/, $(SRCS:%.c=%.o))

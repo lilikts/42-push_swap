@@ -1,4 +1,4 @@
-obj/input.o: input.c push_swap.h includes/libft/libft.h \
+obj/stack_handling.o: stack_handling.c push_swap.h includes/libft/libft.h \
   includes/libft/./get_next_line/get_next_line.h \
   includes/libft/./get_next_line/../libft.h \
   includes/libft/./ft_printf/ft_printf.h

@@ -13,11 +13,14 @@ static void print_stack(t_stack *stack)
 int main(int argc, char **argv)
 {
     t_stack *a;
-    // t_stack *b;
+    t_stack *b;
 
     a = handle_input(argc, argv);
+    b = NULL;
     if (!a)
         error_message();
-    print_stack(a);
+    print_stack(b);
+    push(&b,&a);
+    print_stack(b);
     return (0);
 }
