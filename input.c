@@ -18,31 +18,19 @@ int no_duplicates(t_stack *a)
     return (0);
 }
 
-long	ft_atolo(const char *str)
+int is_sorted (t_stack *stack)
 {
-	long num;
-	int	i;
-	int	sign;
-
-	num = 0;
-	i = 0;
-	sign = 1;
-	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
-		i++;
-	if (str[i] == 43 || str[i] == 45)
-	{
-		if (str[i] == 45)
-        {
-			sign = -1;
-        }
-		i++;
-	}
-	while (str[i] >= 48 && str[i] <= 57)
-	{
-		num = num * 10 + (str[i] - '0');
-		i++;
-	}
-	return (num * sign);
+    t_stack *current;
+    if (!stack)
+        return (1);
+    current = stack;
+    while (current->next)
+    {
+        if (current->num > current->next->num)
+            return (0);
+        current = current->next;
+    }
+    return (1);
 }
 
 static t_stack *transform_to_int(char **args)
@@ -59,11 +47,13 @@ static t_stack *transform_to_int(char **args)
     {
         temp = ft_atolo(args[i]);
         if (temp > INT_MAX || temp < INT_MIN)
+        {
+            free_stack(a);
             return (NULL);
+        }
         stack_add_back(&a, new_stack(temp));
         i++;
     }
-    //free
     return (a);
 }
 
@@ -88,6 +78,10 @@ static t_stack *transform_input(int argc, char **argv)
         args[j] = NULL;
     }
     a = transform_to_int(args);
+    if (argc == 2)
+        free_split(args);
+    else
+        free(args);
     return (a);
 }
 
@@ -102,6 +96,9 @@ t_stack *handle_input(int argc, char **argv)
         return (NULL);
     a = transform_input(argc, argv);
     if (no_duplicates(a))
-        return (NULL);
+    {
+        free_stack(a);
+        error_message();
+    }
     return (a);
 }

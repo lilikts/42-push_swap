@@ -18,7 +18,10 @@ int main(int argc, char **argv)
     a = handle_input(argc, argv);
     b = NULL;
     if (!a)
+    {
+        free_stack(a);
         error_message();
+    }
     print_stack(b);
     push(&b,&a);
     print_stack(b);
