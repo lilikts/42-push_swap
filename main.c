@@ -22,8 +22,13 @@ int main(int argc, char **argv)
         free_stack(a);
         error_message();
     }
-    print_stack(b);
-    push(&b,&a);
-    print_stack(b);
+    print_stack(a);
+    if (stack_length(a) == 3)
+        sort_three(&a);
+    print_stack(a);
+    // else
+    //     sort_stack(&a, &b);
+    free_stack(a);
+    free_stack(b);
     return (0);
 }

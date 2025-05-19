@@ -31,5 +31,9 @@ void push_stack(char dest, t_stack **a, t_stack **b);
 void swap_stack(char dest, t_stack **a, t_stack **b);
 void rotate_stack(char dest, t_stack **a, t_stack **b);
 void reverse_rotate_stack(char dest, t_stack **a, t_stack **b);
+unsigned int stack_length(t_stack *a);
+void sort_three(t_stack **stack);
+void free_stack(t_stack *stack);
+void free_split(char **arr);
 
 #endif

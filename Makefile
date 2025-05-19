@@ -20,7 +20,9 @@ SRCS =	main.c \
 		utils.c \
 		valid_arguments.c \
 		operations.c \
-		stack_handling.c
+		stack_handling.c \
+		algorithm.c \
+		error_management.c
 		
 
 OBJS := $(addprefix $(OBJ_DIR)/, $(SRCS:%.c=%.o))
