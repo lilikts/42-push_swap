@@ -69,3 +69,14 @@ long	ft_atolo(const char *str)
 	}
 	return (num * sign);
 }
+
+void index(t_stack *stack)
+{
+	int i = 0;
+	while (stack)
+	{
+		stack->index = i;
+		stack = stack->next;
+		i++;
+	}
+}

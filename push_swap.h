@@ -12,6 +12,9 @@ struct s_stack
 {
     long num;
     struct s_stack *next;
+    struct s_stack *target;
+    int cost;
+    int index;
 } typedef t_stack;
 
 int valid_arguments(int argc, char **argv);
