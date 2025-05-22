@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-int no_duplicates(t_stack *a)
+static int no_duplicates(t_stack *a)
 {
     t_stack *temp;
 
@@ -18,7 +18,7 @@ int no_duplicates(t_stack *a)
     return (0);
 }
 
-int is_sorted (t_stack *stack)
+static int is_sorted (t_stack *stack)
 {
     t_stack *current;
     if (!stack)

@@ -1,19 +1,5 @@
 #include "push_swap.h"
 
-t_stack *new_stack(int temp)
-{
-    t_stack *new;
-    new = malloc(sizeof(t_stack));
-    if (!new)
-    {
-        free_stack(new);
-        error_message();
-    } 
-    new->num = temp;
-    new->next = NULL;
-    return (new);
-}
-
 int ft_arrlen(char **arr)
 {
     int i;
@@ -22,25 +8,6 @@ int ft_arrlen(char **arr)
     while (arr && arr[i])
         i++;
     return (i);
-}
-
-t_stack	*stack_last(t_stack *stack)
-{
-	if (!stack)
-		return (NULL);
-	while (stack->next)
-		stack = stack->next;
-	return (stack);
-}
-
-void	stack_add_back(t_stack **stack, t_stack *new)
-{
-	if (!stack)
-		return ;
-	if (!*stack)
-		*stack = new;
-	else
-		(stack_last(*stack))->next = new;
 }
 
 long	ft_atolo(const char *str)
@@ -70,13 +37,3 @@ long	ft_atolo(const char *str)
 	return (num * sign);
 }
 
-void index(t_stack *stack)
-{
-	int i = 0;
-	while (stack)
-	{
-		stack->index = i;
-		stack = stack->next;
-		i++;
-	}
-}

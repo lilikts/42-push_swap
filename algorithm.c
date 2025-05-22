@@ -1,17 +1,5 @@
 #include "push_swap.h"
 
-unsigned int stack_length(t_stack *a)
-{
-    unsigned int length;
-    length = 0;
-    while (a)
-    {
-        a = a->next;
-        length++;
-    }
-    return (length);
-}
-
 void sort_three(t_stack **a)
 {
     long first; 
@@ -42,7 +30,17 @@ void sort_three(t_stack **a)
     else if (first < second && second > third && first > third)
         reverse_rotate_stack('a', a, b);
 }
- 
+
+void index(t_stack *stack)
+{
+	int i = 0;
+	while (stack)
+	{
+		stack->index = i;
+		stack = stack->next;
+		i++;
+	}
+}
 
 void target_node(t_stack *a, t_stack *b)
 {
@@ -81,28 +79,6 @@ void target_node(t_stack *a, t_stack *b)
     }
 }
 
-void calculate_cost(t_stack *a, t_stack *b)
-{
-    int a_cost;
-    int b_cost;
-    
-    while (a)
-    {
-        if (a->index <= ft_arrlen(a) / 2)
-            a_cost = a->index;
-        else
-            a_cost = a->index - ft_arrlen(a);
-        if (a->target && a->target->index <= ft_arrlen(b) / 2)
-            b_cost = a->target->index;
-        else if (a->target)
-            b_cost = a->target->index - ft_arrlen(b);
-        else
-            b_cost = 0;
-        a->cost = a_cost + b_cost;
-        a = a->next;
-    }
-}
-
 void sort_stack(t_stack **a, t_stack **b)
 {
     
@@ -110,12 +86,12 @@ void sort_stack(t_stack **a, t_stack **b)
         push_stack('b', a, b);
     if (stack_length > 3)
         push_stack('b', a, b);
-    while (a)
+    while (a > 3)
     {
         index(a);
         index(b);
         target_node(a, b);
-        calculate_cost(a, b);
+        execute_cheapest_move(a, b);
     }
-   
+    sort_three(a);
 }

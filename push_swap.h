@@ -13,30 +13,45 @@ struct s_stack
     long num;
     struct s_stack *next;
     struct s_stack *target;
-    int cost;
+    int total_cost;
+    int a_cost;
+    int b_cost;
     int index;
 } typedef t_stack;
 
+// input
 int valid_arguments(int argc, char **argv);
 t_stack *new_stack(int temp);
-int ft_arrlen(char **arr);
-long	ft_atolo(const char *str);
-void	stack_add_back(t_stack **stack, t_stack *new);
 t_stack	*stack_last(t_stack *stack);
-char	**ft_split(char const *s, char c);
+void	stack_add_back(t_stack **stack, t_stack *new);
 t_stack *handle_input(int argc, char **argv);
+
+// error_handling
+void free_stack(t_stack *stack);
+void free_split(char **arr);
 void error_message(void);
+
+// operations
 void push(t_stack **dest, t_stack **src);
 void swap(t_stack **stack);
 void rotate(t_stack **stack);
 void reverse_rotate(t_stack **stack);
+
+// stack handling
 void push_stack(char dest, t_stack **a, t_stack **b);
 void swap_stack(char dest, t_stack **a, t_stack **b);
 void rotate_stack(char dest, t_stack **a, t_stack **b);
 void reverse_rotate_stack(char dest, t_stack **a, t_stack **b);
-unsigned int stack_length(t_stack *a);
-void sort_three(t_stack **stack);
-void free_stack(t_stack *stack);
-void free_split(char **arr);
+
+// cheapest node
+void execute_cheapest_move(t_stack **a, t_stack **b);
+
+// utils
+int ft_arrlen(char **arr);
+long	ft_atolo(const char *str);
+
+// void sort_three(t_stack **stack);
+
+
 
 #endif
