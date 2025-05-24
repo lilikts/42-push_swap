@@ -22,7 +22,10 @@ SRCS =	main.c \
 		operations.c \
 		stack_handling.c \
 		algorithm.c \
-		error_management.c
+		error_management.c \
+		cheapest_node.c \
+		create_stack.c \
+		
 		
 
 OBJS := $(addprefix $(OBJ_DIR)/, $(SRCS:%.c=%.o))

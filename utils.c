@@ -1,5 +1,18 @@
 #include "push_swap.h"
 
+
+int stack_length(t_stack *stack)
+{
+    int length = 0;
+
+    while (stack != NULL)
+    {
+        length++;
+        stack = stack->next;
+    }
+    return length;
+}
+
 int ft_arrlen(char **arr)
 {
     int i;

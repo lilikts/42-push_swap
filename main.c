@@ -25,9 +25,9 @@ int main(int argc, char **argv)
     print_stack(a);
     if (stack_length(a) == 3)
         sort_three(&a);
-    print_stack(a);
-    // else
-    //     sort_stack(&a, &b);
+    else
+        sort_stack(a, b);
+    print_stack(a); 
     free_stack(a);
     free_stack(b);
     return (0);
