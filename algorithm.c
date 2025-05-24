@@ -42,56 +42,102 @@ void index(t_stack *stack)
 	}
 }
 
-void target_node(t_stack *a, t_stack *b)
-{
-    t_stack *current_b;
-    long closest_smaller;
+void target_in_b(char)
 
-    while (a)
-    {
-        a->target = NULL;
-        current_b = b;
-        closest_smaller = LONG_MIN;
-        while (current_b)
-        {
-            if (current_b->num < a->num && current_b->num > closest_smaller)
-            {
-                closest_smaller = current_b->num;
-                a->target = current_b;
-            }
-            current_b = current_b->next;
-        }
-        if (a->target == NULL)
-        {
-            current_b = b;
-            closest_smaller = LONG_MAX;
-            while (current_b)
-            {
-                if (current_b->num < closest_smaller)
-                {
-                    closest_smaller = current_b->num;
-                    a->target = current_b;
-                }
-            }
-            current_b = current_b->next;
-        }
-        a = a->next;
-    }
+void target_node(char dest, t_stack *x, t_stack *y)
+{
+    t_stack *current;
+    long closest_smaller;
+	long closest_bigger;
+
+	if (dest == 'a')
+	{
+		while (x)
+		{
+			x->target = NULL;
+			current = y;
+			closest_smaller = LONG_MIN;
+			while (current)
+			{
+				if (current->num < x->num && current->num > closest_smaller)
+				{
+					closest_smaller = current->num;
+					x->target = current;
+				}
+				current = current->next;
+			}
+			if (x->target == NULL)
+			{
+				current = y;
+				closest_smaller = LONG_MAX;
+				while (current)
+				{
+					if (current->num < closest_smaller)
+					{
+						closest_smaller = current->num;
+						x->target = current;
+					}
+					current = current->next;
+				}
+			}
+			x = x->next;
+		}
+	}
+    else if (dest == 'b')
+	{
+		while (y)
+		{
+			y->target = NULL;
+			current = x;
+			closest_bigger = LONG_MAX;
+			while (current)
+			{
+				if (current->num > y->num && current->num < closest_bigger)
+				{
+					closest_bigger = current->num;
+					y->target = current;
+				}
+				current = current->next;
+			}
+			if (y->target == NULL)
+			{
+				current = x;
+				closest_bigger = LONG_MIN;
+				while (current)
+				{
+					if (current->num > closest_bigger)
+					{
+						closest_bigger = current->num;
+						y->target = current;
+					}
+					current = current->next;
+				}
+			}
+			y = y->next;
+		}
+	}
 }
 
 void sort_stack(t_stack **a, t_stack **b)
 {
     
-    if (stack_length > 3)
+    if (ft_arrlen(a) > 3)
         push_stack('b', a, b);
-    if (stack_length > 3)
+    if (ft_arrlen(a) > 3)
         push_stack('b', a, b);
     while (a > 3)
     {
         index(a);
         index(b);
-        target_node(a, b);
+        target_node('a', a, b);
         execute_cheapest_move(a, b);
     }
     sort_three(a);
+	while (b >= 0)
+	{
+		index(a);
+		index(b);
+		target_node('b', a, b);
+		execute_cheapest_move(b, a);
+	}
 }
