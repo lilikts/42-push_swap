@@ -38,13 +38,13 @@ void rotate(t_stack **stack);
 void reverse_rotate(t_stack **stack);
 
 // stack handling
-void push_stack(char dest, t_stack *a, t_stack *b);
-void swap_stack(char dest, t_stack *a, t_stack *b);
-void rotate_stack(char dest, t_stack *a, t_stack *b);
-void reverse_rotate_stack(char dest, t_stack *a, t_stack *b);
+void push_stack(char dest, t_stack **a, t_stack **b);
+void swap_stack(char dest, t_stack **a, t_stack **b);
+void rotate_stack(char dest, t_stack **a, t_stack **b);
+void reverse_rotate_stack(char dest, t_stack **a, t_stack **b);
 
 // cheapest node
-void execute_cheapest_move(t_stack **a, t_stack **b);
+void execute_cheapest_move(char dest, t_stack **a, t_stack **b);
 
 // utils
 int stack_length(t_stack *stack);
@@ -52,7 +52,10 @@ long	ft_atolo(const char *str);
 int ft_arrlen(char **arr);
 
 // sorting algorithm
-void sort_three(t_stack **stack);
-void sort_stack(t_stack *a, t_stack *b);
+void set_index(t_stack *stack);
+void sort_two(t_stack **a);
+void sort_three(t_stack **a);
+void sort_stack(t_stack **a, t_stack **b);
+void final_rotation(t_stack **a, t_stack **b);
 
 #endif

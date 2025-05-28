@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-void push_stack(char dest, t_stack *a, t_stack *b)
+void push_stack(char dest, t_stack **a, t_stack **b)
 {
     if (dest == 'a')
     {
@@ -14,7 +14,7 @@ void push_stack(char dest, t_stack *a, t_stack *b)
     }
 }
 
-void swap_stack(char dest, t_stack *a, t_stack *b)
+void swap_stack(char dest, t_stack **a, t_stack **b)
 {
     if (dest == 'a')
     {
@@ -33,7 +33,7 @@ void swap_stack(char dest, t_stack *a, t_stack *b)
         ft_printf("ss\n");
     }
 }
-void rotate_stack(char dest, t_stack *a, t_stack *b)
+void rotate_stack(char dest, t_stack **a, t_stack **b)
 {
     if (dest == 'a')
     {
@@ -53,7 +53,7 @@ void rotate_stack(char dest, t_stack *a, t_stack *b)
     }
 
 }
-void reverse_rotate_stack(char dest, t_stack *a, t_stack *b)
+void reverse_rotate_stack(char dest, t_stack **a, t_stack **b)
 {
     if (dest == 'a')
     {

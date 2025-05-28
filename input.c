@@ -89,15 +89,22 @@ t_stack *handle_input(int argc, char **argv)
 {
     t_stack *a;
 
-    if (argc < 2 || argv[1][0] == '\0')
+    if (argc < 2 || argv[1] == NULL || argv[1][0] == '\0')
         return (NULL);
     if (valid_arguments(argc, argv))
         return (NULL);
     a = transform_input(argc, argv);
-    if (no_duplicates(a) || is_sorted(a))
+	if (!a)
+		return (NULL);
+    if (no_duplicates(a))
     {
         free_stack(a);
         error_message();
     }
+	else if (is_sorted(a))
+	{
+		free_stack(a);
+		exit(EXIT_SUCCESS);
+	}
     return (a);
 }

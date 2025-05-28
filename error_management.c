@@ -24,6 +24,6 @@ void free_split(char **arr)
 
 void error_message(void)
 {
-    ft_printf("Error\n");
+    write(2, "Error\n", 6);
     exit(EXIT_FAILURE);
 }

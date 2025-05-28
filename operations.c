@@ -39,7 +39,7 @@ void rotate(t_stack **stack)
     last->next = first;
 }
 
-void reverse_rotate(t_stack **stack)
+void reverse_rotate(t_stack **stack) //das noch testen morgen
 {
     t_stack *prev;
     t_stack *last;

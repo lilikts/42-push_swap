@@ -2,21 +2,30 @@
 
 static void calculate_cost(t_stack *a, t_stack *b)
 {
-    while (a)
+    int a_len = stack_length(a);
+    int b_len = stack_length(b);
+	t_stack *current;
+	current = a;
+    while (current)
     {
-        if (a->index <= ft_arrlen(a) / 2)
-            a->a_cost = a->index;
+        if (current->index <= a_len / 2)
+		{
+            current->a_cost = current->index;
+		}
         else
-            a->a_cost = a->index - ft_arrlen(a);
-        if (a->target && a->target->index <= ft_arrlen(b) / 2)
-            a->b_cost = a->target->index;
-        else if (a->target)
-            a->b_cost = a->target->index - ft_arrlen(b);
+			current->a_cost = current->index  - a_len;
+
+        if (current->target && current->target->index <= b_len / 2)
+            current->b_cost = current->target->index;
         else
-            a->b_cost = 0;
-        a->total_cost = abs(a->a_cost) + abs(a->b_cost);
-        a = a->next;
+		{
+            current->b_cost = current->target->index - b_len;
+		}
+			
+        current->total_cost = abs(current->a_cost) + abs(current->b_cost);
+        current = current->next;
     }
+
 }
 
 static t_stack *calculate_cheapest(t_stack *a)
@@ -35,13 +44,15 @@ static t_stack *calculate_cheapest(t_stack *a)
     return (cheapest);
 }
 
-void execute_cheapest_move(t_stack **a, t_stack **b)
+void execute_cheapest_move(char dest, t_stack **a, t_stack **b)
 {
     t_stack *cheapest;
     int a_moves;
     int b_moves;
     calculate_cost(*a, *b);
-    cheapest = calculate_cheapest(a);
+    cheapest = calculate_cheapest(*a);
+	if (!cheapest)
+		return ;
     a_moves = cheapest->a_cost;
     b_moves = cheapest->b_cost;
     while (a_moves > 0 && b_moves > 0)
@@ -76,5 +87,8 @@ void execute_cheapest_move(t_stack **a, t_stack **b)
         reverse_rotate_stack('b', a, b);
         b_moves++;
     }
-    push_stack('b', a, b);
+	if (dest == 'a')
+		push_stack('a', a, b);
+    else if (dest == 'b')
+		push_stack('b', a, b);
 }

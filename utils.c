@@ -10,7 +10,7 @@ int stack_length(t_stack *stack)
         length++;
         stack = stack->next;
     }
-    return length;
+    return (length);
 }
 
 int ft_arrlen(char **arr)

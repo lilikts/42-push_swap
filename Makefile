@@ -25,6 +25,7 @@ SRCS =	main.c \
 		error_management.c \
 		cheapest_node.c \
 		create_stack.c \
+		final_rotation.c \
 		
 		
 
