@@ -1,39 +1,39 @@
 #include "push_swap.h"
 
-static void print_stack1(t_stack *stack)
-{
-    if (!stack)
-    {
-        printf("Stack B: (empty)\n");
-        return;
-    }
+// static void print_stack(t_stack *stack)
+// {
+//     if (!stack)
+//     {
+//         printf("Stack: (empty)\n");
+//         return;
+//     }
 
-    while (stack)
-    {
-        printf("Stack B: %ld\n", stack->num);
-        stack = stack->next;
-    }
-}
-static void print_stack2(t_stack *stack)
-{
-    while (stack)
-    {
-        printf("Stack A: %ld\n", stack->num);
-        stack = stack->next;
-    }
-}
+//     while (stack)
+//     {
+//         printf("Stack: %ld\n", stack->num);
+//         stack = stack->next;
+//     }
+// }
+// static void print_stack2(t_stack *stack)
+// {
+//     while (stack)
+//     {
+//         printf("Stack A: %ld\n", stack->num);
+//         stack = stack->next;
+//     }
+// }
 
-static void print_target(t_stack *stack)
-{
-    while (stack)
-    {
-        if (stack->target)
-            printf("Node %ld -> Target %ld\n", stack->num, stack->target->num);
-        else
-            printf("Node %ld -> Target NULL\n", stack->num);
-        stack = stack->next;
-    }
-}
+// static void print_target(t_stack *stack)
+// {
+//     while (stack)
+//     {
+//         if (stack->target)
+//             printf("Node %ld -> Target %ld\n", stack->num, stack->target->num);
+//         else
+//             printf("Node %ld -> Target NULL\n", stack->num);
+//         stack = stack->next;
+//     }
+// }
 
 void set_index(t_stack *stack)
 {
@@ -92,34 +92,34 @@ void sort_three(t_stack **a)
 
 static void target_node_b(t_stack *a, t_stack *b)
 {
-    t_stack *stack_b;
+    t_stack *current;
     long closest_smaller;
     while (a)
     {
 		a->target = NULL;
-		stack_b = b;
+		current = b;
 		closest_smaller = LONG_MIN;
-		while (stack_b)
+		while (current)
 		{
-			if (stack_b->num < a->num && stack_b->num > closest_smaller)
+			if (current->num < a->num && current->num > closest_smaller)
 			{
-				closest_smaller = stack_b->num;
-				a->target = stack_b;
+				closest_smaller = current->num;
+				a->target = current;
 			}
-			stack_b = stack_b->next;
+			current = current->next;
 		}
     	if (a->target == NULL)
 		{
-			stack_b = b;
+			current = b;
 			closest_smaller = LONG_MIN;
-			while (stack_b)
+			while (current)
 			{
-				if (stack_b->num > closest_smaller)
+				if (current->num > closest_smaller)
 				{
-					closest_smaller = stack_b->num;
-					a->target = stack_b;
+					closest_smaller = current->num;
+					a->target = current;
 				}
-				stack_b = stack_b->next;
+				current = current->next;
 			}
 		}
 		a = a->next;
@@ -182,10 +182,7 @@ void sort_stack(t_stack **a, t_stack **b)
 		set_index(*a);
 		set_index(*b);
 		target_node_a(*a, *b);
-		print_stack1(*b);
-		print_stack2(*a);
-		print_target(*b);
-		execute_cheapest_move('a', b, a);
+		execute_cheapest_move('a', a, b);
 	}
 	final_rotation(a, b);
 }
