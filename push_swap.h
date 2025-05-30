@@ -44,8 +44,9 @@ void rotate_stack(char dest, t_stack **a, t_stack **b);
 void reverse_rotate_stack(char dest, t_stack **a, t_stack **b);
 
 // cheapest node
-void execute_cheapest_move(char dest, t_stack **a, t_stack **b);
-
+void execute_cheapest_move_a(t_stack **a, t_stack **b);
+void execute_cheapest_move_b(t_stack **a, t_stack **b);
+// void execute_cheapest_move(char dest, t_stack **a, t_stack **b);
 // utils
 int stack_length(t_stack *stack);
 long	ft_atolo(const char *str);
@@ -57,5 +58,8 @@ void sort_two(t_stack **a);
 void sort_three(t_stack **a);
 void sort_stack(t_stack **a, t_stack **b);
 void final_rotation(t_stack **a, t_stack **b);
+//testing
+void print_stack_a(t_stack *stack);
+void print_stack_b(t_stack *stack);
 
 #endif

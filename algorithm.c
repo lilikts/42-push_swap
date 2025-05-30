@@ -1,50 +1,5 @@
 #include "push_swap.h"
 
-// static void print_stack(t_stack *stack)
-// {
-//     if (!stack)
-//     {
-//         printf("Stack: (empty)\n");
-//         return;
-//     }
-
-//     while (stack)
-//     {
-//         printf("Stack: %ld\n", stack->num);
-//         stack = stack->next;
-//     }
-// }
-// static void print_stack2(t_stack *stack)
-// {
-//     while (stack)
-//     {
-//         printf("Stack A: %ld\n", stack->num);
-//         stack = stack->next;
-//     }
-// }
-
-// static void print_target(t_stack *stack)
-// {
-//     while (stack)
-//     {
-//         if (stack->target)
-//             printf("Node %ld -> Target %ld\n", stack->num, stack->target->num);
-//         else
-//             printf("Node %ld -> Target NULL\n", stack->num);
-//         stack = stack->next;
-//     }
-// }
-
-void set_index(t_stack *stack)
-{
-	int i = 0;
-	while (stack)
-	{
-		stack->index = i;
-		stack = stack->next;
-		i++;
-	}
-}
 void sort_two(t_stack **a)
 {
 	long first;
@@ -88,6 +43,20 @@ void sort_three(t_stack **a)
 		swap_stack('a', a, b);
         reverse_rotate_stack('a', a, b);
     }
+}
+
+void set_index(t_stack *stack)
+{
+	int index;
+	index = 0;
+	if (!stack)
+		return;
+	while (stack)
+	{
+		stack->index = index;
+		stack = stack->next;
+		index++;
+	}
 }
 
 static void target_node_b(t_stack *a, t_stack *b)
@@ -174,15 +143,21 @@ void sort_stack(t_stack **a, t_stack **b)
         set_index(*a);
         set_index(*b);
         target_node_b(*a, *b);
-        execute_cheapest_move('b', a, b);
+        execute_cheapest_move_a(a, b);
     }
     sort_three(a);
+	printf("NACH SOrT THREE:\n");
+	print_stack_a(*a);
+	print_stack_b(*b);
 	while (*b != NULL)
 	{
 		set_index(*a);
 		set_index(*b);
-		target_node_a(*a, *b);
-		execute_cheapest_move('a', a, b);
+		target_node_a(*a, *b); //richtig
+		execute_cheapest_move_b(a, b); 
+		// print_stack_a(*a);
+		// print_stack_b(*b);
 	}
 	final_rotation(a, b);
+	print_stack_a(*a);
 }
