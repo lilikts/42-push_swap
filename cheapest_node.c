@@ -4,18 +4,22 @@ static void calculate_cost_a(t_stack *a, t_stack *b)
 {
     // int a_cost_abs;
 	// int b_cost_abs;
+	int length_a;
+	int length_b;
+	length_a = stack_length(a);
+	length_b = stack_length(b);
 	while (a)
     {
-        if (a->index <= stack_length(a) / 2)
+        if (a->index <= length_a / 2)
             a->a_cost = a->index;
         else
-            a->a_cost = a->index - stack_length(a);
+            a->a_cost = a->index - length_a;
         if (a->target)
 		{
-			if (a->target->index <= stack_length(b) / 2)
+			if (a->target->index <= length_b / 2)
 				a->b_cost = a->target->index;
 			else
-				a->b_cost = a->target->index - stack_length(b);
+				a->b_cost = a->target->index - length_b;
 		}
         else
             a->b_cost = 0;
@@ -38,18 +42,22 @@ static void calculate_cost_b(t_stack *a, t_stack *b)
 {
     // int a_cost_abs;
 	// int b_cost_abs;
+	int length_a;
+	int length_b;
+	length_a = stack_length(a);
+	length_b = stack_length(b);
 	while (b) 
     {
-        if (b->index <= stack_length(b) / 2)
+        if (b->index <= length_b / 2)
             b->b_cost = b->index;
         else
-            b->b_cost = b->index - stack_length(b);
+            b->b_cost = b->index - length_b;
         if (b->target)
 		{
-			if (b->target->index <= stack_length(a) / 2)
+			if (b->target->index <= length_a / 2)
 				b->a_cost = b->target->index;
 			else
-				b->a_cost = b->target->index - stack_length(a);
+				b->a_cost = b->target->index - length_a;
 		}
         else
             b->a_cost = 0; //?????
@@ -87,62 +95,6 @@ static t_stack *calculate_cheapest(t_stack *stack)
     return (cheapest);
 }
 
-// void execute_cheapest_move(char dest, t_stack **a, t_stack **b)
-// {
-//     t_stack *cheapest;
-//     int a_moves;
-//     int b_moves;
-// 	if (dest == 'a')
-// 	{
-// 		calculate_cost(*b, *a);
-// 		cheapest = calculate_cheapest(*b);
-// 	}
-//     else
-// 	{
-// 		calculate_cost(*a, *b);
-// 		cheapest = calculate_cheapest(*a);
-// 	}
-// 	if (!cheapest)
-// 		return ;
-//     a_moves = cheapest->a_cost;
-//     b_moves = cheapest->b_cost;
-//     while (a_moves > 0 && b_moves > 0)
-//     {
-//         rotate_stack('r', a, b);
-//         a_moves--;
-//         b_moves--;
-//     }
-//     while (a_moves < 0 && b_moves < 0)
-//     {
-//         reverse_rotate_stack('r', a, b);
-//         a_moves++;
-//         b_moves++;
-//     }
-//     while (a_moves > 0)
-//     {
-//         rotate_stack('a', a, b);
-//         a_moves--;
-//     }
-//     while (a_moves < 0)
-//     {
-//         reverse_rotate_stack('a', a, b);
-//         a_moves++;
-//     }
-//     while (b_moves > 0)
-//     {
-//         rotate_stack('b', a, b);
-//         b_moves--;
-//     }
-//     while (b_moves < 0)
-//     {
-//         reverse_rotate_stack('b', a, b);
-//         b_moves++;
-//     }
-// 	if (dest == 'a')
-// 		push_stack('a', a, b);
-//     else if (dest == 'b')
-// 		push_stack('b', a, b);
-// }
 void execute_cheapest_move_a(t_stack **a, t_stack **b)
 {
     t_stack *cheapest;

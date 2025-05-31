@@ -1,33 +1,33 @@
 #include "push_swap.h"
 
-
-int stack_length(t_stack *stack)
+int	stack_length(t_stack *stack)
 {
-    int length = 0;
+	int	length;
 
-    while (stack != NULL)
-    {
-        length++;
-        stack = stack->next;
-    }
-    return (length);
+	length = 0;
+	while (stack != NULL)
+	{
+		length++;
+		stack = stack->next;
+	}
+	return (length);
 }
 
-int ft_arrlen(char **arr)
+int	ft_arrlen(char **arr)
 {
-    int i;
+	int	i;
 
-    i = 0;
-    while (arr && arr[i])
-        i++;
-    return (i);
+	i = 0;
+	while (arr && arr[i])
+		i++;
+	return (i);
 }
 
 long	ft_atolo(const char *str)
 {
-	long num;
-	int	i;
-	int	sign;
+	long	num;
+	int		i;
+	int		sign;
 
 	num = 0;
 	i = 0;
@@ -37,9 +37,9 @@ long	ft_atolo(const char *str)
 	if (str[i] == 43 || str[i] == 45)
 	{
 		if (str[i] == 45)
-        {
+		{
 			sign = -1;
-        }
+		}
 		i++;
 	}
 	while (str[i] >= 48 && str[i] <= 57)
@@ -49,4 +49,3 @@ long	ft_atolo(const char *str)
 	}
 	return (num * sign);
 }
-

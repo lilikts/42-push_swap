@@ -1,29 +1,32 @@
 #include "push_swap.h"
 
-void free_stack(t_stack *stack)
+void	free_stack(t_stack *stack)
 {
-    t_stack *temp;
-    while (stack)
-    {
-        temp = stack->next;
-        free(stack);
-        stack = temp;
-    }
+	t_stack	*temp;
+
+	while (stack)
+	{
+		temp = stack->next;
+		free(stack);
+		stack = temp;
+	}
 }
 
-void free_split(char **arr)
+void	free_split(char **arr)
 {
-    int i = 0;
-    while (arr[i])
-    {
-        free(arr[i]);
-        i++;
-    }
-    free(arr);
+	int	i;
+
+	i = 0;
+	while (arr[i])
+	{
+		free(arr[i]);
+		i++;
+	}
+	free(arr);
 }
 
-void error_message(void)
+void	error_message(void)
 {
-    write(2, "Error\n", 6);
-    exit(EXIT_FAILURE);
+	write(2, "Error\n", 6);
+	exit(EXIT_FAILURE);
 }

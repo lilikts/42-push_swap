@@ -1,17 +1,18 @@
 #include "push_swap.h"
 
-t_stack *new_stack(int temp)
+t_stack	*new_stack(int temp)
 {
-    t_stack *new;
-    new = malloc(sizeof(t_stack));
-    if (!new)
-    {
-        free_stack(new);
-        error_message();
-    } 
-    new->num = temp;
-    new->next = NULL;
-    return (new);
+	t_stack	*new;
+
+	new = malloc(sizeof(t_stack));
+	if (!new)
+	{
+		free_stack(new);
+		error_message();
+	}
+	new->num = temp;
+	new->next = NULL;
+	return (new);
 }
 
 t_stack	*stack_last(t_stack *stack)

@@ -59,7 +59,9 @@ void sort_three(t_stack **a);
 void sort_stack(t_stack **a, t_stack **b);
 void final_rotation(t_stack **a, t_stack **b);
 //testing
-void print_stack_a(t_stack *stack);
-void print_stack_b(t_stack *stack);
+// void print_target(t_stack *stack);
+// void print_cost(t_stack *stack);
+// void print_stack_a(t_stack *stack);
+// void print_stack_b(t_stack *stack);
 
 #endif
