@@ -18,14 +18,17 @@ LIBFT_REPO = https://github.com/lilikts/42-Libft.git
 SRCS =	main.c \
 		input.c \
 		utils.c \
-		valid_arguments.c \
+		validate_arguments.c \
 		operations.c \
 		stack_handling.c \
 		algorithm.c \
 		error_management.c \
-		cheapest_node.c \
+		execute_cheapest.c \
 		create_stack.c \
 		final_rotation.c \
+		get_target.c \
+		calculate_cheapest.c \
+		sort_three.c
 		
 		
 
@@ -65,11 +68,10 @@ $(NAME): $(LIBFT_LIB) $(OBJS)
 
 clean:
 	@rm -rf $(OBJ_DIR)
-	@$(MAKE) -C $(LIBFT_DIR) clean 2>/dev/null || true
+	@rm -rf $(LIBFT_DIR)
 
 fclean: clean
 	@rm -f $(NAME)
-	@$(MAKE) -C $(LIBFT_DIR) fclean 2>/dev/null || true
 
 cleanall: fclean remove-libft
 
