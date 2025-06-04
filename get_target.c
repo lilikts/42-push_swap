@@ -12,35 +12,57 @@
 
 #include "push_swap.h"
 
-static t_stack *closest_smaller(t_stack *a, t_stack *b)
+static t_stack	*closest_smaller(t_stack *a, t_stack *b)
 {
 	t_stack	*current;
-	long closest_smaller;
+	t_stack	*closest;
+	long	closest_smaller;
 
 	current = b;
+	closest = NULL;
 	closest_smaller = LONG_MIN;
 	while (current)
 	{
-		if(current->num < a->num)
-		closest = a;
-
+		if (current->num < a->num && current->num > closest_smaller)
+		{
+			closest_smaller = current->num;
+			closest = current;
+		}
+		current = current->next;
 	}
 	return (closest);
 }
 
-static t_stack *closest_bigger()
+static t_stack	*closest_bigger(t_stack *a, t_stack *b)
 {
+	t_stack	*current;
+	t_stack	*closest;
+	long	closest_bigger;
 
+	current = a;
+	closest = NULL;
+	closest_bigger = LONG_MAX;
+	while (current)
+	{
+		if (current->num > b->num && current->num < closest_bigger)
+		{
+			closest_bigger = current->num;
+			closest = current;
+		}
+		current = current->next;
+	}
+	return (closest);
 }
 
-void target_node_b(t_stack *a, t_stack *b)
+void	target_node_b(t_stack *a, t_stack *b)
 {
-    t_stack	*current;
-    long	max;
-    while (a)
-    {
-		a->target = closest_smaller();
-    	if (a->target == NULL)
+	t_stack	*current;
+	long	max;
+
+	while (a)
+	{
+		a->target = closest_smaller(a, b);
+		if (a->target == NULL)
 		{
 			current = b;
 			max = LONG_MIN;
@@ -58,14 +80,14 @@ void target_node_b(t_stack *a, t_stack *b)
 	}
 }
 
-void target_node_a(t_stack *a, t_stack *b)
+void	target_node_a(t_stack *a, t_stack *b)
 {
 	t_stack	*current;
-    long	min;
+	long	min;
 
 	while (b)
 	{
-		b->target = closest_bigger();
+		b->target = closest_bigger(a, b);
 		if (b->target == NULL)
 		{
 			current = a;
