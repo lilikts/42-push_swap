@@ -55,9 +55,9 @@ init-libft:
 
 remove-libft:
 	@if [ -d "$(LIBFT_DIR)" ]; then \
-		git submodule deinit -f $(LIBFT_DIR) 2>/dev/null || true; \
-		git rm -f $(LIBFT_DIR) 2>/dev/null || rm -rf $(LIBFT_DIR); \
-		rm -rf .git/modules/$(LIBFT_DIR) 2>/dev/null || true; \
+		git submodule deinit -f $(LIBFT_DIR) > /dev/null 2>&1; \
+		git rm -f $(LIBFT_DIR) > /dev/null 2>&1; \
+		rm -rf .git/modules/$(LIBFT_DIR) > /dev/null 2>&1; \
 	fi
 
 $(LIBFT_LIB): init-libft
@@ -66,15 +66,13 @@ $(LIBFT_LIB): init-libft
 $(NAME): $(LIBFT_LIB) $(OBJS)
 	@$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LIBFTFLAGS)
 
-clean:
+clean: remove-libft
 	@rm -rf $(OBJ_DIR)
 	@rm -rf $(LIBFT_DIR)
 
 fclean: clean
 	@rm -f $(NAME)
 
-cleanall: fclean remove-libft
-
 re: fclean all
 
-.PHONY: all clean fclean re init-libft remove-libft cleanall
+.PHONY: all clean fclean re init-libft remove-libft
