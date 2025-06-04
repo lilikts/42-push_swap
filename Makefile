@@ -46,11 +46,9 @@ $(OBJ_DIR)/%.o: %.c
 
 init-libft:
 	@if [ ! -d "$(LIBFT_DIR)" ]; then \
-		git submodule add $(LIBFT_REPO) $(LIBFT_DIR) > /dev/null 2>&1 || \
-		git clone $(LIBFT_REPO) $(LIBFT_DIR); \
+		git submodule add $(LIBFT_REPO) $(LIBFT_DIR) > /dev/null 2>&1; \
 	elif [ -z "$$(ls -A $(LIBFT_DIR) 2>/dev/null)" ]; then \
-		git submodule update --init --recursive $(LIBFT_DIR) > /dev/null 2>&1 || \
-		git clone $(LIBFT_REPO) $(LIBFT_DIR); \
+		git submodule update --init --recursive $(LIBFT_DIR) > /dev/null 2>&1; \
 	fi
 
 remove-libft:
