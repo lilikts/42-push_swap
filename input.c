@@ -6,7 +6,7 @@
 /*   By: lkloters <lkloters@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 10:04:29 by lkloters          #+#    #+#             */
-/*   Updated: 2025/06/03 10:04:30 by lkloters         ###   ########.fr       */
+/*   Updated: 2025/06/06 12:13:43 by lkloters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,8 +81,6 @@ static t_stack	*transform_input(int argc, char **argv)
 	j = 0;
 	if (argc == 2)
 		args = ft_split(argv[1], ' ');
-	if (!args)
-		return (NULL);
 	else
 	{
 		args = (char **)malloc(sizeof(char *) * argc);

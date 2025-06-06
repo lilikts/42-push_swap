@@ -29,8 +29,6 @@ SRCS =	main.c \
 		get_target.c \
 		calculate_cheapest.c \
 		sort_three.c
-		
-		
 
 OBJS := $(addprefix $(OBJ_DIR)/, $(SRCS:%.c=%.o))
 DEPS := $(addprefix $(DEP_DIR)/, $(SRCS:%.c=%.d))
