@@ -81,6 +81,8 @@ static t_stack	*transform_input(int argc, char **argv)
 	j = 0;
 	if (argc == 2)
 		args = ft_split(argv[1], ' ');
+	if (!args)
+		return (NULL);
 	else
 	{
 		args = (char **)malloc(sizeof(char *) * argc);
